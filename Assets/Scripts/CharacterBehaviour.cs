@@ -4,15 +4,18 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class CharacterBehaviour : MonoBehaviour {
-	[HideInInspector]
-	public float moveDirection = 0f;
+	private float moveDirection = 0f;
+	private float facingDirection = 1.0f;
 
 //	[Tooltip("The move speed.")]
 	public float moveSpeed = 0.1f;
 
 	[HideInInspector]
-	public bool action1;
+	private bool action1;
 	public float attackStrength = 100.0f;
+	public GameObject attackSprite;
+	[HideInInspector]
+	public float attackCooldown = 1.0f;
 
 	public CharacterAttackChecker attackChecker;
 
@@ -33,16 +36,48 @@ public class CharacterBehaviour : MonoBehaviour {
 		Attack (action1);
 	}
 
+	public void SetMovingDirection (float direction) {
+		moveDirection = direction;
+	}
+
+	public void SetAction1Trigger (bool action1Trigger) {
+		action1 = action1Trigger;
+	}
+
 	private void Move (float direction) {
 		if (direction != 0) {
-			transform.Translate (moveSpeed * moveDirection, 0, 0);
+
+			// Flip the gameObject to face its walking direction (if needed)
+			if (direction > 0 && transform.rotation.eulerAngles.y != 0) {
+				transform.rotation = Quaternion.Euler (0, 0, 0);
+
+				// Update the last facing direction
+				facingDirection = 1.0f;
+			} else if (direction < 0 && transform.rotation.eulerAngles.y != 180) {
+				transform.rotation = Quaternion.Euler (0, 180, 0);
+
+				// Update the last facing direction
+				facingDirection = -1.0f;
+			}
+
+			// Move the gameObject to the facing direction
+			transform.Translate (moveSpeed, 0, 0);
 		}
 	}
 
 	private void Attack (bool attack) {
 		if (attack) {
-			List<GameObject> hits = attackChecker.CheckAttackCollision ();
+			// Toggle the attack's sprite to visible
+			try {
+				attackSprite.GetComponent<SpriteRenderer> ().enabled = true;
+			} catch (Exception exc) {
+				Debug.Log ("No AttackSprite object was detected in " + gameObject.name + ": " + exc);
+			}
 
+			// Raycast and get all GameObjects with colliders in the attack line.
+			List<GameObject> hits = attackChecker.CheckAttackCollision (facingDirection);
+
+			// Filter the Game Objects in the attack line, getting only those that can be destroyed.
 			List<ObjectDestructible> objs = GetDestructibleObjectsOnAttackLine (hits);
 
 			foreach (ObjectDestructible obj in objs) {

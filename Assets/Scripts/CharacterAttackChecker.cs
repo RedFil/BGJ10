@@ -16,10 +16,10 @@ public class CharacterAttackChecker : MonoBehaviour {
 		
 	}
 
-	public List<GameObject> CheckAttackCollision () {
-		RaycastHit2D[] hits = Physics2D.RaycastAll (transform.position, Vector2.right, attackDistance);
+	public List<GameObject> CheckAttackCollision (float facingDirection) {
+		RaycastHit2D[] hits = Physics2D.RaycastAll (transform.position, Vector2.right * facingDirection, attackDistance);
 
-		Debug.DrawRay (transform.position, Vector3.right * attackDistance, Color.green);
+		Debug.DrawRay (transform.position, Vector3.right * attackDistance * facingDirection, Color.green);
 
 		// Clear the objs in the attack line
 		objsOnAttackLine.Clear ();

@@ -23,8 +23,8 @@ public class CharacterInputController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (charBehaviour != null) {
-			charBehaviour.moveDirection = Input.GetAxisRaw ("Horizontal");
-			charBehaviour.action1 = Input.GetButton ("Fire1");
+			charBehaviour.SetMovingDirection (Input.GetAxisRaw ("Horizontal"));
+			charBehaviour.SetAction1Trigger (Input.GetButton ("Fire1"));
 		} else {
 			Debug.Log ("No CharacterBehaviour setted in the " + gameObject.name + " object.");
 		}
