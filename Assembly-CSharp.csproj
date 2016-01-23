@@ -45,7 +45,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\CharacterAttackChecker.cs" />
      <Compile Include="Assets\Scripts\CharacterBehaviour.cs" />
+     <Compile Include="Assets\Scripts\CharacterInputController.cs" />
+     <Compile Include="Assets\Scripts\ObjectDestructible.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
