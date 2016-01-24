@@ -14,8 +14,9 @@ public class CharacterBehaviour : MonoBehaviour {
 	private bool action1;
 	public float attackStrength = 100.0f;
 	public GameObject attackSprite;
-	[HideInInspector]
-	public float attackCooldown = 1.0f;
+
+	public float attackCooldown = 0.5f;
+	private float attackTime = 0;
 
 	public CharacterAttackChecker attackChecker;
 
@@ -66,20 +67,24 @@ public class CharacterBehaviour : MonoBehaviour {
 	}
 
 	private void Attack (bool attack) {
-		if (attack) {
+		if (attack && attackTime + attackCooldown < Time.time) {
+			// Sets the attack's cooldown.
+			attackTime = Time.time;
+
 			// Toggle the attack's sprite to visible
 			try {
-				attackSprite.GetComponent<SpriteRenderer> ().enabled = true;
+				attackSprite.GetComponent<AttackSpriteBehaviour> ().ShowAttack ();
 			} catch (Exception exc) {
 				Debug.Log ("No AttackSprite object was detected in " + gameObject.name + ": " + exc);
 			}
 
-			// Raycast and get all GameObjects with colliders in the attack line.
+			// Raycast and get all GameObjects with colliders in the attack line
 			List<GameObject> hits = attackChecker.CheckAttackCollision (facingDirection);
 
-			// Filter the Game Objects in the attack line, getting only those that can be destroyed.
+			// Filter the Game Objects in the attack line, getting only those that can be destroyed
 			List<ObjectDestructible> objs = GetDestructibleObjectsOnAttackLine (hits);
 
+			// Inflict damage to all destructible objects
 			foreach (ObjectDestructible obj in objs) {
 				obj.takeDamage (attackStrength);
 			}
@@ -89,6 +94,7 @@ public class CharacterBehaviour : MonoBehaviour {
 	private List<ObjectDestructible> GetDestructibleObjectsOnAttackLine (List<GameObject> colliders) {
 		List<ObjectDestructible> objs = new List<ObjectDestructible> ();
 
+		// Filter all given objects, selecting only those with the ObjectDestructible script on it
 		foreach (GameObject hit in colliders) {
 			ObjectDestructible obj = hit.GetComponent<ObjectDestructible> ();
 
