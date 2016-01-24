@@ -23,7 +23,7 @@ public class AttackSpriteBehaviour : MonoBehaviour {
 				sprRend.enabled = false;
 			}
 		} catch (Exception exc) {
-			Debug.Log ("No SpriteRenderer was found in " + gameObject.name + ": " + exc);
+			Debug.LogError ("No SpriteRenderer was found in " + gameObject.name + ": " + exc);
 		}
 	}
 

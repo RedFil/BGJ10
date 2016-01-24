@@ -15,7 +15,7 @@ public class CharacterInputController : MonoBehaviour {
 			try {
 				charBehaviour = GetComponent<CharacterBehaviour> ();
 			} catch (Exception exc) {
-				Debug.Log ("No CharacterBehaviour script found in the " + gameObject.name + " object: " + exc);
+				Debug.LogError ("No CharacterBehaviour script found in the " + gameObject.name + " object: " + exc);
 			}
 		}
 	}
@@ -26,7 +26,7 @@ public class CharacterInputController : MonoBehaviour {
 			charBehaviour.SetMovingDirection (Input.GetAxisRaw ("Horizontal"));
 			charBehaviour.SetAction1Trigger (Input.GetButton ("Fire1"));
 		} else {
-			Debug.Log ("No CharacterBehaviour setted in the " + gameObject.name + " object.");
+			Debug.LogError ("No CharacterBehaviour setted in the " + gameObject.name + " object.");
 		}
 	}
 }

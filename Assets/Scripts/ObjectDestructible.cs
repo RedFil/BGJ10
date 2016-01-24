@@ -21,7 +21,7 @@ public class ObjectDestructible : MonoBehaviour {
 			try {
 				Instantiate (destroyedObjectPrefab, transform.position, transform.rotation);
 			} catch (Exception exc) {
-				Debug.Log ("No DestroyedObjectPrefab was setted for " + gameObject.name + " object: " + exc);
+				Debug.LogError ("No DestroyedObjectPrefab was setted for " + gameObject.name + " object: " + exc);
 			}
 
 			Destroy (gameObject);

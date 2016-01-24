@@ -26,7 +26,7 @@ public class CharacterBehaviour : MonoBehaviour {
 			try {
 				attackChecker = GetComponent<CharacterAttackChecker> ();
 			} catch (Exception exc) {
-				Debug.Log ("No CharacterAttackChecker script found in the gameObject: " + exc);
+				Debug.LogError ("No CharacterAttackChecker script found in the gameObject: " + exc);
 			}
 		}
 	}
@@ -75,7 +75,7 @@ public class CharacterBehaviour : MonoBehaviour {
 			try {
 				attackSprite.GetComponent<AttackSpriteBehaviour> ().ShowAttack ();
 			} catch (Exception exc) {
-				Debug.Log ("No AttackSprite object was detected in " + gameObject.name + ": " + exc);
+				Debug.LogError ("No AttackSprite object was detected in " + gameObject.name + ": " + exc);
 			}
 
 			// Raycast and get all GameObjects with colliders in the attack line
