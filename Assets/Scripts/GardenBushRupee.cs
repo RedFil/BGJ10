@@ -7,7 +7,7 @@ public class GardenBushRupee : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if (UnityEngine.Random.Range (1, 4) != 0) {
+		if (UnityEngine.Random.Range (1, 4) == 1) {
 			GameObject mainChar = GameObject.Find ("MainCharacter");
 
 			if (mainChar != null) {
