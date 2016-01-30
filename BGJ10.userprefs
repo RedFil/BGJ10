@@ -1,13 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GardenBushRupee.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/EnemyBehaviour.cs">
     <Files>
-      <File FileName="Assets/Scripts/TransitionBlock.cs" Line="10" Column="51" />
-      <File FileName="Assets/Scripts/CameraBehaviour.cs" Line="43" Column="23" />
+      <File FileName="Assets/Scripts/TransitionBlock.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CameraBehaviour.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/GardenBushRupee.cs" Line="10" Column="40" />
-      <File FileName="Assets/Scripts/RupeeBehaviour.cs" Line="11" Column="24" />
-      <File FileName="Assets/Scripts/CharacterBehaviour.cs" Line="78" Column="1" />
-      <File FileName="Assets/Scripts/ObjectDestructible.cs" Line="24" Column="1" />
+      <File FileName="Assets/Scripts/RupeeBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CharacterBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ObjectDestructible.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/EnemyBehaviour.cs" Line="8" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

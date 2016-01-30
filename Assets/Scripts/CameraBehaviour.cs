@@ -19,9 +19,9 @@ public class CameraBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (followObject != null) {
-			Vector3 toPos = followObject.transform.position;
-			Vector3 myPos = transform.position;
-			transform.position = new Vector3 (toPos.x, myPos.y, myPos.z);
+			Vector3 toPos = transform.position;
+			toPos.x = followObject.transform.position.x;
+			transform.position = Vector3.MoveTowards (transform.position, toPos, screenTransitionSpeed);
 		} else if (transform.position != newPos) {
 			transform.position = Vector3.Lerp (oldPos, newPos, (Time.time - startMoveTime) / 1.0f);
 		}

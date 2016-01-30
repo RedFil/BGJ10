@@ -46,12 +46,16 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\AttackSpriteBehaviour.cs" />
+     <Compile Include="Assets\Scripts\ButtonTransitionFade.cs" />
      <Compile Include="Assets\Scripts\CameraBehaviour.cs" />
      <Compile Include="Assets\Scripts\CharacterAttackChecker.cs" />
      <Compile Include="Assets\Scripts\CharacterBehaviour.cs" />
      <Compile Include="Assets\Scripts\CharacterInputController.cs" />
+     <Compile Include="Assets\Scripts\EnemyBehaviour.cs" />
      <Compile Include="Assets\Scripts\GardenBushRupee.cs" />
+     <Compile Include="Assets\Scripts\MovingObjectBehaviour.cs" />
      <Compile Include="Assets\Scripts\ObjectDestructible.cs" />
+     <Compile Include="Assets\Scripts\PedestrianBehaviour.cs" />
      <Compile Include="Assets\Scripts\RupeeBehaviour.cs" />
      <Compile Include="Assets\Scripts\TransitionBlock.cs" />
  <Reference Include="UnityEngine.UI">

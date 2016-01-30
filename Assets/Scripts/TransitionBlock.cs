@@ -16,23 +16,26 @@ public class TransitionBlock : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D other) {
-		CameraBehaviour camera = GameObject.Find ("MainCamera").GetComponent<CameraBehaviour> ();
-		if (camera == null) {
-			Debug.LogError ("No 'MainCamera' was found in the scene to make a transition command.");
-			return;
-		}
+		if (other.gameObject.name == "MainCharacter") {
+			CameraBehaviour camera = GameObject.Find ("MainCamera").GetComponent<CameraBehaviour> ();
+			if (camera == null) {
+				Debug.LogError ("No 'MainCamera' was found in the scene to make a transition command.");
+				return;
+			}
 
-		if (moveCameraToPosition != null) {
-			camera.MoveToPosition (moveCameraToPosition.position);
-		} else {
-			Debug.Log ("No point setted to move the Camera, therefor it will follow the MainCharacter.");
-
-			GameObject mainChar = GameObject.Find ("MainCharacter");
-
-			if (mainChar != null) {
-				camera.FollowObject (mainChar);
+			if (moveCameraToPosition != null) {
+				camera.StopFollowing ();
+				camera.MoveToPosition (moveCameraToPosition.position);
 			} else {
-				Debug.LogError ("No 'MainCharacter' was found in the scene to do the follow command.");
+				Debug.Log ("No point setted to move the Camera, therefor it will follow the MainCharacter.");
+
+				GameObject mainChar = GameObject.Find ("MainCharacter");
+
+				if (mainChar != null) {
+					camera.FollowObject (mainChar);
+				} else {
+					Debug.LogError ("No 'MainCharacter' was found in the scene to do the follow command.");
+				}
 			}
 		}
 	}

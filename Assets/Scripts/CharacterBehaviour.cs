@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class CharacterBehaviour : MonoBehaviour {
+public class CharacterBehaviour : MovingObjectBehaviour {
 	private float moveDirection = 0f;
 	private float facingDirection = 1.0f;
 
@@ -33,7 +33,8 @@ public class CharacterBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Move (moveDirection);
+		int movingDirection = moveDirection > 0 ? 1 : -1;
+		Move (movingDirection);
 		Attack (action1);
 	}
 
@@ -43,27 +44,6 @@ public class CharacterBehaviour : MonoBehaviour {
 
 	public void SetAction1Trigger (bool action1Trigger) {
 		action1 = action1Trigger;
-	}
-
-	private void Move (float direction) {
-		if (direction != 0) {
-
-			// Flip the gameObject to face its walking direction (if needed)
-			if (direction > 0 && transform.rotation.eulerAngles.y != 0) {
-				transform.rotation = Quaternion.Euler (0, 0, 0);
-
-				// Update the last facing direction
-				facingDirection = 1.0f;
-			} else if (direction < 0 && transform.rotation.eulerAngles.y != 180) {
-				transform.rotation = Quaternion.Euler (0, 180, 0);
-
-				// Update the last facing direction
-				facingDirection = -1.0f;
-			}
-
-			// Move the gameObject to the facing direction
-			transform.Translate (moveSpeed, 0, 0);
-		}
 	}
 
 	private void Attack (bool attack) {
